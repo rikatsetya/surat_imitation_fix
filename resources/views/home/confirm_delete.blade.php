@@ -1,4 +1,4 @@
-@empty($surat)
+@empty($inbox)
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,7 +16,7 @@
         </div>
     </div>
 @else
-    <form action="{{ url('/inbox/' . $surat->surat_id . '/delete') }}" method="POST" id="form-delete">
+    <form action="{{ url('/inbox/' . $inbox->inbox_id . '/delete') }}" method="POST" id="form-delete">
         @csrf
         @method('DELETE')
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
@@ -35,15 +35,6 @@
                         <tr>
                             <th class="text-right col-2">Subject:</th>
                             <td class="col-8">{{ $surat->perihal }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-right col-2">To:</th>
-                            @foreach ($user as $item)
-                                @if ($item->user_id == $surat->kepada)
-                                <td class="col-8">{{ $item->name }}</td>
-                                    
-                                @endif
-                            @endforeach
                         </tr>
                     </table>
                 </div>

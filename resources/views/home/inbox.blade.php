@@ -114,7 +114,7 @@
                     </div>
                     <div class="float-right">
                         <button type="button" class="btn btn-default" onclick="modalAction('{{ url('/surat/'. $surat->surat_id . '/forward') }}')"><i class="fas fa-share"></i> Forward</button>
-                        <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
+                        <button type="button" class="btn btn-default" onclick="modalAction('{{ url('/inbox/' . $inbox->inbox_id . '/delete') }}')"><i class="far fa-trash-alt"></i> Delete</button>
                     </div>
                 </div>
                 <!-- /.card-header -->

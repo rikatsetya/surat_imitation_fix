@@ -70,6 +70,7 @@ class InboxModelController extends Controller
     {
         $user = Auth::user();
         $inbox = InboxModel::select(
+            'inbox_id',
             'name',
             'sender',
             'm_inbox.surat_id',
@@ -88,8 +89,8 @@ class InboxModelController extends Controller
         return DataTables::of($inbox)
             ->addIndexColumn()
             ->addColumn('aksi', function ($inbox) {
-                $btn = '<a href="' . url('/surat/' . $inbox->surat_id) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<button onclick="modalAction(\'' . url('/inbox/' . $inbox->surat_id . '/delete') . '\')" class="btn btn-danger btn-sm">Hapus</button> ';
+                $btn = '<a href="' . url('/surat/' . $inbox->inbox_id) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<button onclick="modalAction(\'' . url('/inbox/' . $inbox->inbox_id . '/delete') . '\')" class="btn btn-danger btn-sm">Hapus</button> ';
                 return $btn;
             })
             ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html 
@@ -142,7 +143,8 @@ class InboxModelController extends Controller
     public function show(String $id)
     {
         $userid = auth()->user()->id;
-        $surat = SuratModel::find($id);
+        $inbox = InboxModel::find($id);
+        $surat = SuratModel::find($inbox->surat_id);
         $user = UserModel::all();
         $activeMenu = 'home';
         $activeSubMenu = 'inbox';
@@ -153,7 +155,7 @@ class InboxModelController extends Controller
         $page = (object) [
             'title' => 'Email'
         ];
-        return view('home.inbox', ['userid' => $userid, 'surat' => $surat, 'user' => $user, 'activeMenu' => $activeMenu, 'activeSubMenu' => $activeSubMenu, 'breadcrumb' => $breadcrumb, 'page' => $page]);
+        return view('home.inbox', ['userid' => $userid, 'surat' => $surat, 'user' => $user, 'activeMenu' => $activeMenu, 'activeSubMenu' => $activeSubMenu, 'breadcrumb' => $breadcrumb, 'page' => $page, 'inbox' => $inbox]);
     }
 
     /**
@@ -177,26 +179,23 @@ class InboxModelController extends Controller
      */
     public function confirm(string $id)
     {
-        $surat = SuratModel::find($id);
+        $inbox = InboxModel::find($id);
+        $surat = SuratModel::find($inbox->surat_id);
         $user = UserModel::all();
-        return view('home.confirm_delete', ['surat' => $surat, 'user' => $user]);
+        return view('home.confirm_delete', ['inbox' => $inbox, 'user' => $user, 'surat' => $surat]);
     }
 
     public function delete(Request $request, $id)
     {
         // cek apakah request dari ajax
         if ($request->ajax() || $request->wantsJson()) {
-            $userid = auth()->user()->id;
-            $inbox = InboxModel::select('surat_id', 'user_id')
-            ->where('user_id', $userid)
-            ->where('surat_id', $id)
-            ->first();
+            $inbox = InboxModel::find($id);
             if ($inbox) {
                 $inbox->delete();
                 return response()->json([
                     'status' => true,
                     'message' => 'Data berhasil dihapus',
-                    'redirect' => route('dashboard'),
+                    'redirect' => url('/')
                 ]);
             } else {
                 return response()->json([

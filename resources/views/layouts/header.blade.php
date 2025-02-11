@@ -24,13 +24,16 @@
             <!-- Right navbar links -->
             <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                 <!-- Messages Dropdown Menu -->
-                <li class="breadcrumb-item">
+                <li class="">
                     <a href="{{ url('logout') }}" class="nav-link"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <p>Logout</p>
                     </a>
                     <form id="logout-form" action="{{ url('logout') }}" method="GET" style="display: none;">
                     </form>
+                </li>
+                <li class="nav-link">
+                    <p style="cursor:pointer">{{ auth()->user()->username }}</p>
                 </li>
             </ul>
         </div>

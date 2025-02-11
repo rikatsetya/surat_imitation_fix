@@ -10,6 +10,7 @@ class InboxModel extends Model
 {
     use HasFactory;
     protected $table = 'm_inbox';
+    protected $primaryKey = 'inbox_id';
     protected $fillable = ['sender','surat_id', 'receiver', 'created_at', 'updated_at'];
 
     public function sender(): BelongsTo{
