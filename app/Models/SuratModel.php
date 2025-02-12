@@ -33,8 +33,9 @@ class SuratModel extends Model
     {
         return $this->belongsTo(UserModel::class, 'pemeriksa', 'user_id');
     }
-    
-    public function inbox(): HasMany{
+
+    public function inbox(): HasMany
+    {
         return $this->hasMany(InboxModel::class, 'surat_id', 'surat_id');
     }
 }

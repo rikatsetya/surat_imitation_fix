@@ -27,14 +27,14 @@ Route::post('register', [AuthController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [WelcomeController::class, 'index']);
-    
+
     Route::prefix('inbox')->group(function () {
         Route::post('/list', [InboxModelController::class, 'list']);
         Route::get('/{id}/export', [SuratModelController::class, 'export_pdf']);
         Route::get('/{id}/delete', [InboxModelController::class, 'confirm']);
         Route::delete('/{id}/delete', [InboxModelController::class, 'delete']);
     });
-    
+
     Route::prefix('memo')->group(function () {
         Route::get('/', [SuratModelController::class, 'index']);
         Route::post('/list', [SuratModelController::class, 'list']);
@@ -55,11 +55,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/{id}/forwarding', [InboxModelController::class, 'forwarding']);
     });
 
-    Route::prefix('outbox')->group(function(){
+    Route::prefix('outbox')->group(function () {
         Route::get('/', [InboxModelController::class, 'outbox']);
         Route::post('/list', [InboxModelController::class, 'outboxlist']);
     });
-
-
-
 });

@@ -22,12 +22,12 @@ class UserModel extends Authenticateable implements JWTSubject
     use HasFactory;
     protected $table = 'm_user';
     protected $primaryKey = 'user_id';
-    protected $fillable = ['username', 'name', 'email', 'password','created_at', 'updated_at'];
+    protected $fillable = ['username', 'name', 'email', 'password', 'created_at', 'updated_at'];
 
     protected $hiidden = ['password'];
 
     protected $casts = ['password' => 'hashed'];
-    
+
     public function kepada(): HasMany
     {
         return $this->hasMany(SuratModel::class, 'kepada', 'user_id');
@@ -47,12 +47,13 @@ class UserModel extends Authenticateable implements JWTSubject
     {
         return $this->hasMany(SuratModel::class, 'pemeriksa', 'user_id');
     }
-        
-    public function sender(): HasMany{
+
+    public function sender(): HasMany
+    {
         return $this->hasMany(InboxModel::class, 'sender', 'user_id');
     }
-    public function receiver(): HasMany{
+    public function receiver(): HasMany
+    {
         return $this->hasMany(InboxModel::class, 'receiver', 'user_id');
     }
-
 }

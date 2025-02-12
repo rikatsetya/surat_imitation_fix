@@ -40,8 +40,7 @@
                             <th class="text-right col-2">To:</th>
                             @foreach ($user as $item)
                                 @if ($item->user_id == $surat->kepada)
-                                <td class="col-8">{{ $item->name }}</td>
-                                    
+                                    <td class="col-8">{{ $item->name }}</td>
                                 @endif
                             @endforeach
                         </tr>

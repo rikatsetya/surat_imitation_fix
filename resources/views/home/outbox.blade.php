@@ -16,12 +16,13 @@
                 <div class="card-body p-0">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a href="{{ url('/')}}" class="nav-link">
+                            <a href="{{ url('/') }}" class="nav-link">
                                 <i class="fas fa-inbox"></i> Inbox
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/outbox')}}" class="nav-link {{ $activeSubMenu == 'outbox' ? 'active' : '' }} ">
+                            <a href="{{ url('/outbox') }}"
+                                class="nav-link {{ $activeSubMenu == 'outbox' ? 'active' : '' }} ">
                                 <i class="far fa-envelope"></i> Sent
                             </a>
                         </li>

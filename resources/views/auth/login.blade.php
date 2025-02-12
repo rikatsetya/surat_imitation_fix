@@ -26,8 +26,8 @@
         background-repeat: no-repeat;
     }
 
-    .card{
-        background-color: rgba(222,222,222,.9);
+    .card {
+        background-color: rgba(222, 222, 222, .9);
     }
 </style>
 
@@ -44,7 +44,8 @@
                 <form action="{{ url('login') }}" method="post" id="form-login">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Username" id="username" name="username">
+                        <input type="text" class="form-control" placeholder="Username" id="username"
+                            name="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -53,7 +54,8 @@
                         <small id="error-username" class="error-text text-danger"></small>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+                        <input type="password" class="form-control" placeholder="Password" id="password"
+                            name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

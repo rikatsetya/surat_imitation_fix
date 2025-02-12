@@ -42,26 +42,26 @@
                     @csrf
                     <div class="form-group">
                         <label>Username</label>
-                        <input value="" type="text" name="username" id="username" class="form-control" placeholder="Username"
-                            required>
+                        <input value="" type="text" name="username" id="username" class="form-control"
+                            placeholder="Username" required>
                         <small id="error-username" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Name</label>
-                        <input value="" type="text" name="name" id="name" class="form-control" placeholder="Name"
-                            required>
+                        <input value="" type="text" name="name" id="name" class="form-control"
+                            placeholder="Name" required>
                         <small id="error-name" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input value="" type="email" name="email" id="email" class="form-control" placeholder="Email"
-                            required>
+                        <input value="" type="email" name="email" id="email" class="form-control"
+                            placeholder="Email" required>
                         <small id="error-email" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input value="" type="password" name="password" id="password" class="form-control" placeholder="Password"
-                            required>
+                        <input value="" type="password" name="password" id="password" class="form-control"
+                            placeholder="Password" required>
                         <small id="error-password" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="row">

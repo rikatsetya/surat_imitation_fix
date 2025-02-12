@@ -79,23 +79,23 @@
             rules: {
                 kepada: {
                     required: true,
-                    number:true,
+                    number: true,
                 },
                 tembusan: {
                     required: false,
-                    number:true,
+                    number: true,
                 },
                 pengirim: {
                     required: true,
-                    number:true,
+                    number: true,
                 },
                 pemeriksa: {
                     required: false,
-                    number:true,
+                    number: true,
                 },
                 perihal: {
                     required: true,
-                    minlength:5
+                    minlength: 5
                 },
                 isi_surat: {
                     required: true,
@@ -103,7 +103,7 @@
                 },
                 lampiran: {
                     required: false,
-                    accept:"pdf,xlsx,png,jpg,jpeg"
+                    accept: "pdf,xlsx,png,jpg,jpeg"
                 },
             },
             submitHandler: function(form) {

@@ -43,10 +43,10 @@
         text-align: center;
     }
 
-    .second-content-wrapper{
+    .second-content-wrapper {
         padding: 15px;
     }
-    
+
     .content-wrapper {
         background-color: lightgrey;
         background-image: url('asset/background.png');
@@ -64,10 +64,10 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <div class="second-content-wrapper">
-                
+
                 <!-- Content Header (Page header) -->
                 @include('layouts.breadcrumb')
-                
+
                 <!-- Main content -->
                 <section class="content">
                     @yield('content')

@@ -20,7 +20,7 @@
                 <div class="card-body p-0">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a href="{{ url('/memo')}}" class="nav-link {{ $activeSubMenu == 'inbox' ? 'active' : '' }} ">
+                            <a href="{{ url('/memo') }}" class="nav-link {{ $activeSubMenu == 'inbox' ? 'active' : '' }} ">
                                 <i class="fas fa-inbox"></i> Created
                             </a>
                         </li>
@@ -62,7 +62,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer p-0">
-                    
+
                 </div>
             </div>
             <!-- /.card -->

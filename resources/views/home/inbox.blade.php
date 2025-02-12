@@ -73,7 +73,7 @@
         }
     </style>
     <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static"
-    data-keyboard="false" data-width="75%" aria-hidden="true"></div>
+        data-keyboard="false" data-width="75%" aria-hidden="true"></div>
     <div class="row">
 
         <div class="col-md-3">
@@ -91,12 +91,12 @@
                 <div class="card-body p-0">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a href="{{ url('/')}}" class="nav-link">
+                            <a href="{{ url('/') }}" class="nav-link">
                                 <i class="fas fa-inbox"></i> Inbox
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/outbox')}}" class="nav-link">
+                            <a href="{{ url('/outbox') }}" class="nav-link">
                                 <i class="far fa-envelope"></i> Sent
                             </a>
                         </li>
@@ -113,9 +113,14 @@
                         <h3 class="card-title">Read Mail</h3>
                     </div>
                     <div class="float-right">
-                        <button type="button" class="btn btn-default" onclick="modalAction('{{ url('/surat/'. $surat->surat_id . '/forward') }}')"><i class="fas fa-share"></i> Forward</button>
-                        <a href="{{ url('/surat/'.$surat->surat_id.'/export')}}" type="button" class="btn btn-default" ><i class="fas fa-download"></i> Download</a>
-                        <button type="button" class="btn btn-default" onclick="modalAction('{{ url('/inbox/' . $inbox->inbox_id . '/delete') }}')"><i class="far fa-trash-alt"></i> Delete</button>
+                        <button type="button" class="btn btn-default"
+                            onclick="modalAction('{{ url('/surat/' . $surat->surat_id . '/forward') }}')"><i
+                                class="fas fa-share"></i> Forward</button>
+                        <a href="{{ url('/surat/' . $surat->surat_id . '/export') }}" type="button"
+                            class="btn btn-default"><i class="fas fa-download"></i> Download</a>
+                        <button type="button" class="btn btn-default"
+                            onclick="modalAction('{{ url('/inbox/' . $inbox->inbox_id . '/delete') }}')"><i
+                                class="far fa-trash-alt"></i> Delete</button>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -202,13 +207,13 @@
 @push('css')
 @endpush
 @push('js')
-<script>
-    function modalAction(url = '') {
+    <script>
+        function modalAction(url = '') {
             $('#myModal').load(url, function() {
                 $('#myModal').modal('show');
             });
         }
-</script>
+    </script>
 @endpush
 @else
 <!-- /.card-footer -->
@@ -219,8 +224,8 @@
                 <div class="mailbox-attachment-info">
                     <label class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>
                         Lampiran</label>
-                        <a href="{{ asset($surat->lampiran)}}" class="btn btn-default btn-sm float-right" download><i
-                                class="fas fa-cloud-download-alt"></i></a>
+                    <a href="{{ asset($surat->lampiran) }}" class="btn btn-default btn-sm float-right" download><i
+                            class="fas fa-cloud-download-alt"></i></a>
                     </span>
                 </div>
             </li>
@@ -238,10 +243,10 @@
 @push('js')
 <script>
     function modalAction(url = '') {
-            $('#myModal').load(url, function() {
-                $('#myModal').modal('show');
-            });
-        }
+        $('#myModal').load(url, function() {
+            $('#myModal').modal('show');
+        });
+    }
 </script>
 @endpush
 @endif

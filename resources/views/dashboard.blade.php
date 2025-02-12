@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-<div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static"
+    <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static"
         data-keyboard="false" data-width="75%" aria-hidden="true"></div>
     <div class="row">
         <div class="col-md-3">
@@ -18,12 +18,12 @@
                 <div class="card-body p-0">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a href="{{ url('/')}}" class="nav-link {{ $activeSubMenu == 'inbox' ? 'active' : '' }} ">
+                            <a href="{{ url('/') }}" class="nav-link {{ $activeSubMenu == 'inbox' ? 'active' : '' }} ">
                                 <i class="fas fa-inbox"></i> Inbox
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/outbox')}}" class="nav-link">
+                            <a href="{{ url('/outbox') }}" class="nav-link">
                                 <i class="far fa-envelope"></i> Sent
                             </a>
                         </li>

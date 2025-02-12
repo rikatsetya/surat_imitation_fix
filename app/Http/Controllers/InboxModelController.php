@@ -30,8 +30,9 @@ class InboxModelController extends Controller
         ];
         $activeMenu = 'home';
         $activeSubMenu = 'outbox';
-        return view('home.outbox', ['breadcrumb' => $breadcrumb, 
-            'page' => $page, 
+        return view('home.outbox', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
             'activeMenu' => $activeMenu,
             'activeSubMenu' => $activeSubMenu
         ]);

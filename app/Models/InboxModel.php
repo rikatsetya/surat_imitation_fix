@@ -11,16 +11,19 @@ class InboxModel extends Model
     use HasFactory;
     protected $table = 'm_inbox';
     protected $primaryKey = 'inbox_id';
-    protected $fillable = ['sender','surat_id', 'receiver', 'created_at', 'updated_at'];
+    protected $fillable = ['sender', 'surat_id', 'receiver', 'created_at', 'updated_at'];
 
-    public function sender(): BelongsTo{
+    public function sender(): BelongsTo
+    {
         return $this->belongsTo(UserModel::class, 'sender', 'user_id');
     }
-    public function receiver(): BelongsTo{
+    public function receiver(): BelongsTo
+    {
         return $this->belongsTo(UserModel::class, 'receiver', 'user_id');
     }
 
-    public function surat(): BelongsTo{
+    public function surat(): BelongsTo
+    {
         return $this->belongsTo(SuratModel::class, 'surat_id', 'surat_id');
     }
 }

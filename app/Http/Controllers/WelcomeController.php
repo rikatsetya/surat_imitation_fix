@@ -17,8 +17,9 @@ class WelcomeController extends Controller
         ];
         $activeMenu = 'home';
         $activeSubMenu = 'inbox';
-        return view('dashboard', ['breadcrumb' => $breadcrumb, 
-            'page' => $page, 
+        return view('dashboard', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
             'activeMenu' => $activeMenu,
             'activeSubMenu' => $activeSubMenu
         ]);
