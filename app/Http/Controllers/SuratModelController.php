@@ -46,9 +46,10 @@ class SuratModelController extends Controller
             'pengirim',
             'perihal',
             'lampiran',
-            'm_surat.created_at')
+            'm_surat.created_at'
+        )
             ->join('m_user', 'm_surat.kepada', '=', 'm_user.user_id')
-            ->where('m_surat.pengirim',$user->user_id)
+            ->where('m_surat.pengirim', $user->user_id)
             ->get();
 
         return DataTables::of($surat)
@@ -110,7 +111,7 @@ class SuratModelController extends Controller
                 $path = 'asset/lampiran/';
                 $file->move($path, $filename);
                 $pathname = $path . $filename;
-                
+
                 SuratModel::create([
                     'kepada' => $request->kepada,
                     'tembusan' => $request->tembusan,
@@ -118,13 +119,13 @@ class SuratModelController extends Controller
                     'pemeriksa' => $request->pemeriksa,
                     'perihal' => $request->perihal,
                     'isi_surat' => $request->isi_surat,
-                    'lampiran' => $pathname, 
+                    'lampiran' => $pathname,
                 ]);
             } else {
                 SuratModel::create($request->all());
             }
             // Jika validasi berhasil, simpan data user
-            
+
 
             // Kembalikan respon JSON berhasil
             return response()->json([
@@ -144,11 +145,11 @@ class SuratModelController extends Controller
         $user = UserModel::all();
 
         $inbox = InboxModel::select('sender', 'surat_id', 'receiver')
-        ->where('sender', $surat->pengirim)
-        ->where('surat_id', $surat->surat_id)
-        ->where('receiver', $surat->kepada)
-        ->first();
-        return view('memo.confirm_send', ['inbox'=> $inbox, 'surat' => $surat, 'kepada' => $kepada, 'user' => $user]);
+            ->where('sender', $surat->pengirim)
+            ->where('surat_id', $surat->surat_id)
+            ->where('receiver', $surat->kepada)
+            ->first();
+        return view('memo.confirm_send', ['inbox' => $inbox, 'surat' => $surat, 'kepada' => $kepada, 'user' => $user]);
     }
 
     public function sent(String $id)
@@ -162,7 +163,7 @@ class SuratModelController extends Controller
             'surat_id' => $surat->surat_id,
             'receiver' => $kepada,
         ]);
-        
+
         return response()->json([
             'status' => true,
             'message' => 'Memo berhasil Dikirim',
@@ -188,7 +189,7 @@ class SuratModelController extends Controller
         $page = (object) [
             'title' => 'Email'
         ];
-        return view('memo.detail', [ 'userid' => $userid ,'surat' => $surat, 'user' => $user, 'activeMenu' => $activeMenu, 'activeSubMenu' => $activeSubMenu, 'breadcrumb' => $breadcrumb, 'page' => $page]);
+        return view('memo.detail', ['userid' => $userid, 'surat' => $surat, 'user' => $user, 'activeMenu' => $activeMenu, 'activeSubMenu' => $activeSubMenu, 'breadcrumb' => $breadcrumb, 'page' => $page]);
     }
 
     /**
@@ -219,29 +220,41 @@ class SuratModelController extends Controller
 
     public function delete(Request $request, $id)
     {
-        // cek apakah request dari ajax
+        // Cek apakah request dari Ajax
         if ($request->ajax() || $request->wantsJson()) {
-            $surat = SuratModel::find($id);
-            if ($surat) {
-                $surat->delete();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Data berhasil dihapus',
-                    'redirect' => route('memo.index'),
-                ]);
-            } else {
+            try {
+                $surat = SuratModel::find($id);
+                if ($surat) {
+                    $surat->delete();
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Data berhasil dihapus',
+                        'redirect' => route('memo.index'),
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Data tidak ditemukan'
+                    ]);
+                }
+            } catch (\Illuminate\Database\QueryException $e) {
+                // Menangkap error database (termasuk foreign key constraint error)
                 return response()->json([
                     'status' => false,
-                    'message' => 'Data tidak ditemukan'
+                    'message' => 'Data tidak dapat dihapus karena masih digunakan di data lain.'
                 ]);
             }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data tidak dapat dihapus'
+            ]);
         }
-        return redirect('/');
     }
 
     public function export_pdf(String $id)
     {
-        $surat = SuratModel::select('surat_id','kepada','tembusan','pengirim','pemeriksa','perihal','isi_surat','created_at')
+        $surat = SuratModel::select('surat_id', 'kepada', 'tembusan', 'pengirim', 'pemeriksa', 'perihal', 'isi_surat', 'created_at')
             ->where('surat_id', $id)
             ->first();
         $user = UserModel::all();
