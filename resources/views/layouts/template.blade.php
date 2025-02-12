@@ -43,8 +43,14 @@
         text-align: center;
     }
 
+    .second-content-wrapper{
+        padding: 15px;
+    }
+    
     .content-wrapper {
-        background-color: lightgray;
+        background-color: lightgrey;
+        background-image: url('asset/background.png');
+        background-repeat: repeat;
     }
 </style>
 
@@ -57,13 +63,16 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            @include('layouts.breadcrumb')
-
-            <!-- Main content -->
-            <section class="content">
-                @yield('content')
-            </section>
+            <div class="second-content-wrapper">
+                
+                <!-- Content Header (Page header) -->
+                @include('layouts.breadcrumb')
+                
+                <!-- Main content -->
+                <section class="content">
+                    @yield('content')
+                </section>
+            </div>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->

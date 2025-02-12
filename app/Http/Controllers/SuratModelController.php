@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\InboxModel;
 use App\Models\SuratModel;
 use App\Models\UserModel;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -236,5 +237,18 @@ class SuratModelController extends Controller
             }
         }
         return redirect('/');
+    }
+
+    public function export_pdf(String $id)
+    {
+        $surat = SuratModel::select('surat_id','kepada','tembusan','pengirim','pemeriksa','perihal','isi_surat','created_at')
+            ->where('surat_id', $id)
+            ->first();
+        $user = UserModel::all();
+        // use Barryvdh\DomPDF\Facade\Pdf;
+        $pdf = Pdf::loadView('memo.export_pdf', ['surat' => $surat, 'user' => $user]);
+        $pdf->setPaper('a4', 'portrait'); // set ukuran kertas dan orientasi
+        $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url $pdf->render();
+        return $pdf->stream($surat->perihal . '.pdf');
     }
 }

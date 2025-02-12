@@ -111,6 +111,7 @@
                     <div class="float-right">
                         <button type="button" class="btn btn-default" onclick="modalAction('{{ url('/surat/'. $surat->surat_id . '/send') }}')"><i class="fas fa-check"></i>Kirim</button>
                         <button type="button" class="btn btn-default" onclick="modalAction('{{ url('/surat/'. $surat->surat_id . '/forward') }}')"><i class="fas fa-share"></i> Forward</button>
+                        <a href="{{ url('/surat/'.$surat->surat_id.'/export')}}" type="button" class="btn btn-default" ><i class="fas fa-download"></i> Download</a>
                         <button type="button" class="btn btn-default" onclick="modalAction('{{ url('/memo/' . $surat->surat_id . '/delete') }}')"><i class="far fa-trash-alt"></i> Delete</button>
                     </div>
                 </div>

@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::prefix('inbox')->group(function () {
         Route::post('/list', [InboxModelController::class, 'list']);
+        Route::get('/{id}/export', [SuratModelController::class, 'export_pdf']);
         Route::get('/{id}/delete', [InboxModelController::class, 'confirm']);
         Route::delete('/{id}/delete', [InboxModelController::class, 'delete']);
     });
@@ -40,12 +41,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create', [SuratModelController::class, 'create']);
         Route::post('/store', [SuratModelController::class, 'store']);
         Route::get('/{id}', [SuratModelController::class, 'show']);
+        Route::get('/{id}/export', [SuratModelController::class, 'export_pdf']);
         Route::get('/{id}/delete', [SuratModelController::class, 'confirm']);
         Route::delete('/{id}/delete', [SuratModelController::class, 'delete']);
     });
 
     Route::prefix('surat')->group(function () {
         Route::get('/{id}', [InboxModelController::class, 'show']);
+        Route::get('/{id}/export', [SuratModelController::class, 'export_pdf']);
         Route::get('/{id}/send', [SuratModelController::class, 'send']);
         Route::post('/{id}/sent', [SuratModelController::class, 'sent']);
         Route::get('/{id}/forward', [InboxModelController::class, 'forward']);
