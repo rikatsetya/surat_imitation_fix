@@ -17,7 +17,8 @@
                         class="nav-link  {{ $activeMenu == 'home' ? 'active' : '' }} ">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('/memo') }}" class="nav-link  {{ $activeMenu == 'memo' ? 'active' : '' }} ">Memo</a>
+                    <a href="{{ url('/memo') }}"
+                        class="nav-link  {{ $activeMenu == 'memo' ? 'active' : '' }} ">Memo</a>
                 </li>
             </ul>
 
@@ -32,8 +33,38 @@
                     <form id="logout-form" action="{{ url('logout') }}" method="GET" style="display: none;">
                     </form>
                 </li>
-                <li class="nav-link">
-                    <p style="cursor:pointer">{{ auth()->user()->username }}</p>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#"> {{ auth()->user()->username }}
+                        <i class="fa fa-user ml-1" ></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-header">User Detail</span>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">
+                            <span class="text-muted text-sm">Username</span>
+                            <div class="float-right">
+                                {{ auth()->user()->username }}
+                                <i class="far fa-user ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <span class="text-muted text-sm">Name</span>
+                            <div class="float-right">
+                                {{ auth()->user()->name }}
+                                <i class="far fa-address-card ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <span class="text-muted text-sm">E-mail</span>
+                            <div class="float-right">
+                                {{ auth()->user()->email }}
+                                <i class="far fa-envelope ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="ddropdown-footer" style="text-align: center"> - </div>
+                    </div>
                 </li>
             </ul>
         </div>
