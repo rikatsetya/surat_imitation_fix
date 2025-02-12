@@ -229,7 +229,7 @@ class SuratModelController extends Controller
                     return response()->json([
                         'status' => true,
                         'message' => 'Data berhasil dihapus',
-                        'redirect' => route('memo.index'),
+                        'redirect' => url('/memo')
                     ]);
                 } else {
                     return response()->json([
